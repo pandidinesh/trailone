@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSE File Upload</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-image: url('https://play-lh.googleusercontent.com/gkZcySm6c12stIX7ZtznHnA8zYuzZHNLkzNBsLWSJai-KfYp71GO0U-WjWh5EBKjCtY=w240-h480-rw');
+      background-size: fixed;
+    }
+
+    .course-btn {
+      width: 100%;
+      padding: 15px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .content {
+      display: none;
+      padding: 15px;
+      background: white;
+      border: 1px solid #ccc;
+    }
+
+    .upload-btn {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      margin-top: 15px;
+      list-style: none;
+      padding: 0;
+    }
+
+    li a {
+      text-decoration: none;
+    
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<button class="course-btn" onclick="toggleCSE()">OPERATING SYSTEM</button>
+
+<div class="content" id="cseContent">
+  
+  <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+    Upload File
+  </button>
+
+  
+<form action="uploads.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="myfile" required>
+    <button type="submit">Upload</button>
+</form>
+
+  
+
+
+  <ul id="fileList"></ul>
+
+</div>
+
+<script>
+  function toggleCSE() {
+    const content = document.getElementById("cseContent");
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  }
+
+  function addFile(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const fileURL = URL.createObjectURL(file);
+
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+
+      link.href = fileURL;
+      link.textContent = file.name;
+      link.target = "_blank";  // open in new tab
+
+      li.appendChild(link);
+      document.getElementById("fileList").appendChild(li);
+    }
+  }
+</script>
+
+</body>
+</html>

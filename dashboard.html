@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Virtual Classroom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#121212;
+    color:#fff;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    align-items:center;
+    padding:15px;
+    background:#1f1f1f;
+}
+
+.menu{
+    font-size:24px;
+    margin-right:15px;
+    cursor:pointer;
+}
+
+.header h1{
+    font-size:20px;
+    flex:1;
+}
+
+.profile{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#e91e63;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* CLASS CARDS */
+.container{
+    padding:15px;
+}
+
+.card{
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:15px;
+    position:relative;
+    cursor:pointer;
+}
+
+.card h2{
+    font-size:22px;
+}
+
+.card p{
+    margin-top:10px;
+    opacity:0.9;
+}
+
+/* COLORS */
+.card.gray{ background:#546e7a; }
+.card.blue{ background:#0277bd; }
+.card.purple{ background:#8e24aa; }
+.card.orange{ background:#ff8a65; }
+
+/* MENU DOTS */
+.dots{
+    position:absolute;
+    right:15px;
+    top:15px;
+    font-size:20px;
+}
+
+/* FLOAT BUTTON */
+.add-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:55px;
+    height:55px;
+    background:#1e88e5;
+    border-radius:50%;
+    font-size:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-250px;
+    width:250px;
+    height:100%;
+    background:#1f1f1f;
+    padding:20px;
+    transition:0.3s ease;
+    z-index:1000;
+}
+
+.sidebar h2{
+    margin-bottom:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    padding:12px 0;
+    cursor:pointer;
+    border-bottom:1px solid #333;
+}
+
+.sidebar ul li:hover{
+    color:#1e88e5;
+}
+
+/* SHOW MENU */
+.sidebar.active{
+    left:0;
+}
+
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    z-index:999;
+}
+
+.overlay.active{
+    display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDE MENU -->
+<div class="overlay" onclick="closeMenu()"></div>
+
+<div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="class.html"  >Classes</a></li>
+        
+   
+        <li><a href="calender.html">Calendar</a></li>
+        <li onclick="alert('To-Do')">To-Do</li>
+        <li onclick="alert('Settings')">Settings</li>
+        <li onclick="alert('Logout')">Logout</li>
+    </ul>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="menu" onclick="menuopen()">☰</div>
+    <h1>Google Classroom</h1>
+    <div class="profile">P</div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="card gray" onclick="openClass('II CSE B - Maths')">
+        <div class="dots">⋮</div>
+        <h2>II CSE</h2>
+        <p>B<br><a href=classroom.html> Dhanasekaran MA2328  </a></p>
+    </div>
+
+    <div class="card blue" onclick="openClass('II CSE 2024-2028')">
+        <div class="dots">⋮</div>
+        <h2>II CSE 2024-2028</h2>
+        <p><a href=classroom.html>Mr. G. Balamuralikrishnan CSE2264</a></p>
+    </div>
+
+    <div class="card gray" onclick="openClass('II Year CSE')">
+        <div class="dots">⋮</div>
+        <h2>II Year CSE</h2>
+        <p>B<br><a href=classroom.html>Mrs. P. Bharathi CSE2370 </a></p>
+    </div>
+
+    <div class="card purple" onclick="openClass('21CS212 Internet Programming')">
+        <div class="dots">⋮</div>
+        <h2>21CS212 - Internet Programming</h2>
+        <p><a href=classroom.html>Dr. V. Akilandeswari CSE2475</a></p>
+    </div>
+
+    <div class="card orange" onclick="openClass('21CS209 Internet Programming')">
+        <div class="dots">⋮</div>
+        <h2>21CS209 - Internet Programming</a></h2>
+        <p><a href=classroom.html>Course Class</p>
+    </div>
+
+</div>
+
+<!-- ADD BUTTON -->
+<div class="add-btn" onclick="addClass()">+</div>
+
+<script>
+function openClass(name){
+    alert("Opening class: " + name);
+    // later: redirect to subject page
+    // window.location.href = "subject.html";
+}
+
+function addClass(){
+    alert("Add / Join Class");
+}
+
+function menuopen(){
+    alert("Menu clicked");
+}
+
+</script>
+<script>
+function menuopen(){
+    document.getElementById("sidebar").classList.add("active");
+    document.querySelector(".overlay").classList.add("active");
+}
+
+function closeMenu(){
+    document.getElementById("sidebar").classList.remove("active");
+    document.querySelector(".overlay").classList.remove("active");
+}
+
+function openClass(name){
+    alert("Opening class: " + name);
+}
+
+function addClass(){
+    alert("Add / Join Class");
+}
+</script>
+
+</body>
+</html>

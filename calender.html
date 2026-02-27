@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: white;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        .calendar {
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .days, .dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .days div {
+            font-weight: bold;
+        }
+
+        .dates div {
+            padding: 15px;
+            background: #333;
+            cursor: pointer;
+        }
+
+        .dates div:hover {
+            background: #555;
+        }
+
+        #files {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2 id="monthYear"></h2>
+
+<div class="calendar">
+    <div class="header">
+        <button onclick="changeMonth(-1)">◀</button>
+        <button onclick="changeMonth(1)">▶</button>
+    </div>
+
+    <div class="days">
+        <div>Sun</div><div>Mon</div><div>Tue</div>
+        <div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+
+    <div class="dates" id="dates"></div>
+</div>
+
+<div id="files"></div>
+
+<script>
+    const postedFiles = {
+        "2026-02-25": ["Math Notes.pdf"],
+        "2026-02-26": ["Programming Lab.pdf"]
+    };
+
+    let currentDate = new Date();
+
+    function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        const firstDay = new Date(year, month, 1).getDay();
+        
+        const lastDate = new Date(year, month + 1, 0).getDate();
+
+        const monthNames = [
+            "January","February","March","April","May","June",
+            "July","August","September","October","November","December"
+        ];
+
+        document.getElementById("monthYear").innerText =
+            monthNames[month] + " " + year;
+
+        const datesDiv = document.getElementById("dates");
+        datesDiv.innerHTML = "";
+
+        for (let i = 0; i < firstDay; i++) {
+            datesDiv.innerHTML += "<div></div>";
+        }
+
+        for (let day = 1; day <= lastDate; day++) {
+            const fullDate =
+                year + "-" +
+                String(month + 1).padStart(2, '0') + "-" +
+                String(day).padStart(2, '0');
+
+            datesDiv.innerHTML +=
+                `<div onclick="showFiles('${fullDate}')">${day}</div>`;
+        }
+    }
+
+    function changeMonth(step) {
+        currentDate.setMonth(currentDate.getMonth() + step);
+        renderCalendar();
+        document.getElementById("files").innerHTML = "";
+    }
+
+    function showFiles(date) {
+        const filesDiv = document.getElementById("files");
+        const files = postedFiles[date];
+
+        if (files) {
+            filesDiv.innerHTML =
+                "<h3>Files posted on " + date + "</h3>" +
+                files.map(file => "<p>" + file + "</p>").join("");
+        } else {
+            filesDiv.innerHTML =
+                "<h3>No files posted on " + date + "</h3>";
+        }
+    }
+
+    renderCalendar();
+</script>
+
+</body>
+</html>
