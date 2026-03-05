@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+<?php
+$conn = mysqli_connect("localhost","root","","filedb");
+if(!$conn){ die("Connection Failed"); }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +25,7 @@
 
     .stream{
         padding:15px;
+        margin-bottom:70px;
     }
 
     .card{
@@ -26,6 +33,7 @@
         border-radius:12px;
         padding:15px;
         margin-bottom:15px;
+        box-shadow:0 0 8px black;
     }
 
     .title{
@@ -57,14 +65,18 @@
         padding:10px 0;
     }
 
-    .nav div{
-        color:#aaa;
-        font-size:14px;
-    }
-
     .active{
         color:#4da3ff;
         font-weight:bold;
+    }
+
+    a{
+        color:#4da3ff;
+        text-decoration:none;
+    }
+
+    a:hover{
+        text-decoration:underline;
     }
 </style>
 </head>
@@ -73,38 +85,158 @@
 <div class="header">📘 Classroom</div>
 
 <div class="stream">
+
+<?php
+$result = mysqli_query($conn,"SELECT * FROM uploads ORDER BY id DESC");
+
+while($row = mysqli_fetch_assoc($result)){
+?>
+
     <div class="card">
-        <div class="title">New material: Practice Problems</div>
-        <div class="date">16 Jan</div>
+        <div class="title">
+            New material:
+            <a href="<?php echo $row['filepath']; ?>" target="_blank">
+                <?php echo $row['filename']; ?>
+            </a>
+        </div>
+
+        <div class="date">
+            <?php echo date("d M Y", strtotime($row['created_at'])); ?>
+        </div>
+
         <div class="comment">Add class comment</div>
     </div>
 
+<?php } ?>
+
+</div>
+
+<div class="nav">
+    <div class="active">Stream</div>
+    <div><a href="quizz1.php">AI QUIZZ</a></div>
+    <div><a href="new.php">upload</a></div>
+</div>
+
+</body>
+=======
+<?php
+$conn = mysqli_connect("localhost","root","","filedb");
+if(!$conn){ die("Connection Failed"); }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Classroom Stream</title>
+<style>
+    body{
+        margin:0;
+        background:#121212;
+        font-family:Arial, sans-serif;
+        color:#fff;
+    }
+
+    .header{
+        padding:15px;
+        background:#1f1f1f;
+        font-size:18px;
+    }
+
+    .stream{
+        padding:15px;
+        margin-bottom:70px;
+    }
+
+    .card{
+        background:#1e1e1e;
+        border-radius:12px;
+        padding:15px;
+        margin-bottom:15px;
+        box-shadow:0 0 8px black;
+    }
+
+    .title{
+        font-size:16px;
+        font-weight:bold;
+    }
+
+    .date{
+        font-size:13px;
+        color:#aaa;
+        margin-top:4px;
+    }
+
+    .comment{
+        margin-top:12px;
+        border-top:1px solid #333;
+        padding-top:10px;
+        color:#888;
+        font-size:14px;
+    }
+
+    .nav{
+        position:fixed;
+        bottom:0;
+        width:100%;
+        display:flex;
+        justify-content:space-around;
+        background:#1f1f1f;
+        padding:10px 0;
+    }
+
+    .active{
+        color:#4da3ff;
+        font-weight:bold;
+    }
+
+    a{
+        color:#4da3ff;
+        text-decoration:none;
+    }
+
+    a:hover{
+        text-decoration:underline;
+    }
+</style>
+</head>
+<body>
+
+<div class="header">📘 Classroom</div>
+
+<div class="stream">
+
+<?php
+$result = mysqli_query($conn,"SELECT * FROM uploads ORDER BY id DESC");
+
+while($row = mysqli_fetch_assoc($result)){
+?>
+
     <div class="card">
-        <div class="title">New material: 2 marks Q & A</div>
-        <div class="date">16 Jan</div>
+        <div class="title">
+            New material:
+            <a href="<?php echo $row['filepath']; ?>" target="_blank">
+                <?php echo $row['filename']; ?>
+            </a>
+        </div>
+
+        <div class="date">
+            <?php echo date("d M Y", strtotime($row['created_at'])); ?>
+        </div>
+
         <div class="comment">Add class comment</div>
     </div>
 
-    <div class="card">
-        <div class="title">New material: Syllabus</div>
-        <div class="date">2 Jan</div>
-        <div class="comment">Add class comment</div>
-    </div>
+<?php } ?>
 
-    <div class="card">
-        <div class="title">New material: Course Plan</div>
-        <div class="date">2 Jan</div>
-        <div class="comment">Add class comment</div>
-    </div>
 </div>
 
 <div class="nav">
     <div class="active">Stream</div>
     <div><a href="one.html">chatbot</a></div>
-    <div ><a href="new.php">upload </a></div>
+    <div><a href="new.php">upload</a></div>
 </div>
 
-
-
 </body>
+>>>>>>> 567c4a9d0bad21e248c6b18fd98bdf607e03f40c
 </html>

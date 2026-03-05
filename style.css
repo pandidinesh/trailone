@@ -1,3 +1,169 @@
+<<<<<<< HEAD
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"poppins",sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("https://thumbs.dreamstime.com/z/welcome-to-our-classroom-banner-cheerful-nursery-school-wall-art-bright-welcoming-design-featuring-playful-elements-like-379902114.jpghttps://thumbs.dreamstime.com/z/welcome-to-our-classroom-banner-cheerful-nursery-school-wall-art-bright-welcoming-design-featuring-playful-elements-like-379902114.jpg");
+
+    background-size: cover;        /* Full screen cover */
+    background-position: center;   /* Center align */
+    background-repeat: no-repeat;  
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 380px;
+    padding: 35px;
+    border-radius: 20px;
+
+    /* Dark Glass Effect */
+    background: rgba(0, 0, 30, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(0, 255, 255, 0.3);
+
+    /* Blue Glow Shadow */
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.2);
+
+    text-align: center;
+}
+form{
+    margin:0 2rem;
+}
+.form-title,
+label,
+p,
+a {
+    color: white;
+}
+input{
+    color:inherit;
+    width:100%;
+    background-color:transparent;
+    border:none;
+    border-bottom:1px solid #757575;
+    padding-left:1.5rem;
+    font-size:15px;
+}
+.input-group input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid cyan;
+    color: white;
+    font-size: 15px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-bottom: 2px solid #00ffff;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+input:focus{
+    background-color: transparent;
+    outline:transparent;
+    border-bottom:2px solid hsl(327,90%,28%);
+}
+input::placeholder{
+    color:transparent;
+}
+label{
+    color:#757575;
+    position:relative;
+    left:1.2em;
+    top:-1.3em;
+    cursor:auto;
+    transition:0.3s ease all;
+}
+input:focus~label,input:not(:placeholder-shown)~label{
+    top:-3em;
+    color:hsl(327,90%,28%);
+    font-size:15px;
+}
+.recover{
+    text-align:right;
+    font-size:1rem;
+    margin-bottom:1rem;
+
+}
+.recover a{
+    text-decoration:none;
+    color:rgb(125,125,235);
+}
+.recover a:hover{
+    color:blue;
+    text-decoration:underline;
+}
+.btn {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    padding: 12px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    box-shadow: 0 0 15px #00ffff;
+}
+.or{
+    font-size:1.1rem;
+    margin-top:0.5rem;
+    text-align:center;
+}
+.icons{
+    text-align:center;
+}
+.icons i{
+    color:rgb(125,125,235);
+    padding:0.8rem 1.5rem;
+    border-radius:10px;
+    font-size:1.5rem;
+    cursor:pointer;
+    border:2px solid #dfe9f5;
+    margin:0 15px;
+    transition:1s;
+}
+.icons i:hover{
+    background:#07001f;
+    font-size:1.6rem;
+    border:2px solid rgb(125,125,235);
+}
+.links{
+    display:flex;
+    justify-content:space-around;
+    padding:0 4rem;
+    margin-top:0.9rem;
+    font-weight:bold;
+}
+button{
+    color:rgb(125,125,235);
+    border:none;
+    background-color:transparent;
+    font-size:1rem;
+    font-weight:bold;
+}
+button:hover{
+    text-decoration:underline;
+    color:blue;
+=======
 *{
     margin:0;
     padding:0;
@@ -134,4 +300,5 @@ button{
 button:hover{
     text-decoration:underline;
     color:blue;
+>>>>>>> 567c4a9d0bad21e248c6b18fd98bdf607e03f40c
 }

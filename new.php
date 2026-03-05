@@ -12,28 +12,31 @@ if(isset($_POST['upload'])){
 
     if(isset($_FILES['myfile']) && $_FILES['myfile']['error'] == 0){
 
-        $filename = $_FILES['myfile']['name'];
+        $filename = basename($_FILES['myfile']['name']);
         $tmpname  = $_FILES['myfile']['tmp_name'];
-        $folder = "uploads/".$filename;
+
+        // Prevent same filename issue
+        $newname = time() . "_" . $filename;
+        $folder = "uploads/" . $newname;
 
         if(move_uploaded_file($tmpname, $folder)){
 
             $stmt = $conn->prepare("INSERT INTO uploads (filename, filepath) VALUES (?, ?)");
-            $stmt->bind_param("ss", $filename, $folder);
+            $stmt->bind_param("ss", $newname, $folder);
             $stmt->execute();
 
-            $message = "File uploaded successfully!";
+            // Redirect to prevent double insert
+            header("Location: ".$_SERVER['PHP_SELF']."?msg=uploaded");
+            exit();
         }
     }
 }
 
-
-/* ================= DELETE ONLY CLICKED FILE ================= */
+/* ================= DELETE ================= */
 if(isset($_POST['delete'])){
 
     $id = intval($_POST['file_id']);
 
-    // Get file path safely
     $stmt = $conn->prepare("SELECT filepath FROM uploads WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -44,16 +47,26 @@ if(isset($_POST['delete'])){
 
         $filepath = $row['filepath'];
 
-        // Delete file from folder
         if(file_exists($filepath)){
             unlink($filepath);
         }
 
-        // Delete from DB
         $stmt = $conn->prepare("DELETE FROM uploads WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
+        // Redirect after delete
+        header("Location: ".$_SERVER['PHP_SELF']."?msg=deleted");
+        exit();
+    }
+}
+
+/* ================= MESSAGE ================= */
+if(isset($_GET['msg'])){
+    if($_GET['msg'] == "uploaded"){
+        $message = "File uploaded successfully!";
+    }
+    if($_GET['msg'] == "deleted"){
         $message = "Selected file deleted successfully!";
     }
 }
@@ -106,6 +119,11 @@ if(isset($_POST['delete'])){
             border:1px solid #ccc;
             padding:8px;
         }
+
+        .msg{
+            color:green;
+            font-weight:bold;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +136,7 @@ if(isset($_POST['delete'])){
         <button type="submit" name="upload" class="upload-btn">Upload</button>
     </form>
 
-    <p style="color:green;"><?php echo $message; ?></p>
+    <p class="msg"><?php echo $message; ?></p>
 
     <h3>Uploaded Files</h3>
 
