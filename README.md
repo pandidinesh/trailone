@@ -1,24 +1,16 @@
-> ⚠ **Note:** This project is a **basic example** intended for learning how to work with a database.  
+# React + Vite
 
-If you're looking for a **better authentication system** with **more features** and **cleaner code**, check out my **new and improved repository**:  
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-🔗 **[Better Version of This Project](https://github.com/francis-njenga/php-auth-starter-kit-beginner)** 🚀
+Currently, two official plugins are available:
 
-# Simple Registration and Login Form
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-This repository contains a basic example of how to implement a registration and login form connected to a database. It serves as an introduction to form handling in a web application.
+## React Compiler
 
-### Important Notice
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-For production use or to ensure better security, it's highly recommended to incorporate proper security measures such as:
-- Using **prepared statements** to prevent SQL injection.
-- Considering a web framework like **Laravel** for more secure and scalable solutions.
+## Expanding the ESLint configuration
 
-### Video Tutorial
-
-For more details on using prepared statements and input validation, you can check out my video tutorial here:
-[Watch the video](https://youtu.be/mQhu19VmOPo)
-
-You can watch the full tutorial on how to set up a login form with database connection on my YouTube channel:  
-[Francis Tech](https://www.youtube.com/@francis_tech)
-
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
